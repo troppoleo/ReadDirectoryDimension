@@ -34,7 +34,7 @@ namespace ReadDirectoryDimension
 
                 foreach (var f in i.GetFiles())
                 {
-                    myD.byteSum += f.Length;
+                    myD.ByteSum += f.Length;
                 }
                 myDirList.Add(myD);
             }
@@ -42,6 +42,81 @@ namespace ReadDirectoryDimension
             
 
             dgvRead.DataSource = myDirList;
+        }
+
+        private void btnFindMax_Click(object sender, EventArgs e)
+        {
+            //clsMaxFile myMaxFile = new ReadDirectoryDimension.clsMaxFile();
+
+            //var myRoot = txtPath.Text.Trim();
+
+            //DirectoryInfo di = new DirectoryInfo(myRoot);
+
+            //foreach (var i in di.GetDirectories())
+            //{
+            //    clsFiles myf = new clsFiles();
+            //    myf.DirName = i.Name;
+
+            //    foreach (var f in i.GetFiles())
+            //    {
+            //        if (myMaxFile.FilesArr.Contains(f.Name))
+            //        {
+            //            myf.fileName = f.Name;
+            //            myf.ByteSum = f.Length;
+
+            //            myMaxFile.SetMaxFile(myf);
+            //        }
+            //    }                
+            //}
+
+            dataGridView1.DataSource = GetMaxList();
+        }
+
+        private List<clsFiles> GetMaxList()
+        {
+            clsMaxFile myMaxFile = new ReadDirectoryDimension.clsMaxFile();
+
+            var myRoot = txtPath.Text.Trim();
+
+            DirectoryInfo di = new DirectoryInfo(myRoot);
+
+            foreach (var i in di.GetDirectories())
+            {
+                clsFiles myf = new clsFiles();
+                myf.DirName = i.Name;
+
+                foreach (var f in i.GetFiles())
+                {
+                    if (myMaxFile.FilesArr.Contains(f.Name))
+                    {
+                        myf.fileName = f.Name;
+                        myf.ByteSum = f.Length;
+
+                        myMaxFile.SetMaxFile(myf);
+                    }
+                }
+            }
+
+            return  myMaxFile.GetFileList;
+        }
+
+        private void btnCopyIt_Click(object sender, EventArgs e)
+        {
+            var myRoot = txtPath.Text.Trim();
+            var myPath = txtMaxFiles.Text.Trim();
+
+            var myListFile = GetMaxList();
+            foreach (var f in myListFile)
+            {
+                if (f.ByteSum > 0)
+                {
+                    var myOrig = Path.Combine(myRoot, f.GetFullName());
+                    var myDest = Path.Combine(myPath, f.fileName);
+                    File.Copy(myOrig , myDest );
+                }
+            }
+
+            MessageBox.Show("Done");
         }
     }
 }
