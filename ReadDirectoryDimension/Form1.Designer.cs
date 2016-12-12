@@ -35,10 +35,12 @@
             this.byteSum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnFindMax = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dirNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clsDirBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCopyIt = new System.Windows.Forms.Button();
             this.txtMaxFiles = new System.Windows.Forms.TextBox();
+            this.btnConcatenaFile = new System.Windows.Forms.Button();
+            this.dirNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clsDirBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtConcatFile = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clsDirBindingSource)).BeginInit();
@@ -103,16 +105,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(875, 177);
             this.dataGridView1.TabIndex = 4;
             // 
-            // dirNameDataGridViewTextBoxColumn
-            // 
-            this.dirNameDataGridViewTextBoxColumn.DataPropertyName = "DirName";
-            this.dirNameDataGridViewTextBoxColumn.HeaderText = "DirName";
-            this.dirNameDataGridViewTextBoxColumn.Name = "dirNameDataGridViewTextBoxColumn";
-            // 
-            // clsDirBindingSource
-            // 
-            this.clsDirBindingSource.DataSource = typeof(ReadDirectoryDimension.clsDir);
-            // 
             // btnCopyIt
             // 
             this.btnCopyIt.Location = new System.Drawing.Point(216, 261);
@@ -131,11 +123,41 @@
             this.txtMaxFiles.TabIndex = 6;
             this.txtMaxFiles.Text = "D:\\Programmazione\\test\\Progetto_PercorsoSQL2016\\__MaxFiles";
             // 
+            // btnConcatenaFile
+            // 
+            this.btnConcatenaFile.Location = new System.Drawing.Point(592, 501);
+            this.btnConcatenaFile.Name = "btnConcatenaFile";
+            this.btnConcatenaFile.Size = new System.Drawing.Size(75, 23);
+            this.btnConcatenaFile.TabIndex = 7;
+            this.btnConcatenaFile.Text = "Concatena File";
+            this.btnConcatenaFile.UseVisualStyleBackColor = true;
+            this.btnConcatenaFile.Click += new System.EventHandler(this.btnConcatenaFile_Click);
+            // 
+            // dirNameDataGridViewTextBoxColumn
+            // 
+            this.dirNameDataGridViewTextBoxColumn.DataPropertyName = "DirName";
+            this.dirNameDataGridViewTextBoxColumn.HeaderText = "DirName";
+            this.dirNameDataGridViewTextBoxColumn.Name = "dirNameDataGridViewTextBoxColumn";
+            // 
+            // clsDirBindingSource
+            // 
+            this.clsDirBindingSource.DataSource = typeof(ReadDirectoryDimension.clsDir);
+            // 
+            // txtConcatFile
+            // 
+            this.txtConcatFile.Location = new System.Drawing.Point(12, 501);
+            this.txtConcatFile.Name = "txtConcatFile";
+            this.txtConcatFile.Size = new System.Drawing.Size(560, 22);
+            this.txtConcatFile.TabIndex = 8;
+            this.txtConcatFile.Text = "D:\\Programmazione\\test\\Progetto_PercorsoSQL2016\\__ConcatFile";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 479);
+            this.ClientSize = new System.Drawing.Size(908, 536);
+            this.Controls.Add(this.txtConcatFile);
+            this.Controls.Add(this.btnConcatenaFile);
             this.Controls.Add(this.txtMaxFiles);
             this.Controls.Add(this.btnCopyIt);
             this.Controls.Add(this.dataGridView1);
@@ -166,6 +188,8 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnCopyIt;
         private System.Windows.Forms.TextBox txtMaxFiles;
+        private System.Windows.Forms.Button btnConcatenaFile;
+        private System.Windows.Forms.TextBox txtConcatFile;
     }
 }
 

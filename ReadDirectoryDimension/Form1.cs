@@ -118,5 +118,43 @@ namespace ReadDirectoryDimension
 
             MessageBox.Show("Done");
         }
+
+        private void btnConcatenaFile_Click(object sender, EventArgs e)
+        {
+            clsMaxFile myMaxFile = new ReadDirectoryDimension.clsMaxFile();
+
+            var myRoot = txtPath.Text.Trim();
+            var myPath = txtConcatFile.Text.Trim();
+
+            DirectoryInfo di = new DirectoryInfo(myRoot);
+
+            foreach (var i in di.GetDirectories())
+            {
+                clsFiles myf = new clsFiles();
+                myf.DirName = i.Name;
+
+                foreach (var f in i.GetFiles())
+                {
+                    if (myMaxFile.FilesArr.Contains(f.Name))
+                    {
+                        string[] lines = System.IO.File.ReadAllLines(f.FullName);
+                        myf.FullName = f.FullName;
+                        myf.fileName = f.Name;
+
+                        if (lines.Count() > 0)
+                        {
+                            var myL = lines.ToList();
+                            //rimuovo l'intestazione
+                            //myL.RemoveAt(0);
+                            
+                            myMaxFile.Concatenate(myf, myL, myPath);
+                        }
+                        //myf.fileName = f.Name;
+                        //myf.ByteSum = f.Length;
+
+                    }
+                }
+            }
+        }
     }
 }
